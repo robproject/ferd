@@ -178,7 +178,7 @@ def get_connection(data, doctype_name, doctypes):
     # data is Link fieldtype field object, doctype_name is doctype name and doctypes is list of all doctypes
     # get_connection function will return connection string
     if data.get("options") in doctypes:
-        table = ' [style="bold" color=blue]' if data.get("fieldtype") == 'Table' else ""
+        table = ' [style=bold color=blue arrowhead=crow arrowtail=tee dir=both]' if data.get("fieldtype") == 'Table' else "[arrowhead=tee arrowtail=crow dir=both]"
         source = "".join(c if c.isalnum() else "_" for c in doctype_name).lower()
         dest = "".join(c if c.isalnum() else "_" for c in data.get("options")).lower()
         connection_string = f"""{source}:{data.get('fieldname')} -> {dest}:name{table};"""
@@ -210,7 +210,7 @@ def get_graph_string(table_list, connections_string_list, fetch_from_string_list
     if child_tables:
         entry = '\n<tr><td align="left" port="i3">Child Table</td></tr>'
         port = '\n<tr><td port="i3">&nbsp;</td></tr>'
-        key = '\nkey:i3:e -> key2:i3:w [color="blue", style=bold]'
+        key = '\nkey:i3:e -> key2:i3:w [color=blue style=bold arrowhead=crow arrowtail=tee dir=both]'
     else:
         entry = port = key = ""
     graph_string = f"""
@@ -238,7 +238,7 @@ def get_graph_string(table_list, connections_string_list, fetch_from_string_list
             <tr><td port="i1">&nbsp;</td></tr>
             <tr><td port="i2">&nbsp;</td></tr>{port}
             </table>>]
-            key:i1:e -> key2:i1:w 
+            key:i1:e -> key2:i1:w [arrowhead=tee arrowtail=crow dir=both]
             key:i2:e -> key2:i2:w [style=dashed]{key}
         }}
         }}

@@ -53,15 +53,26 @@ def get_doctype_json():
 
 
 @frappe.whitelist()
-def get_erd(doctypes: Iterable[str], child_tables: bool=True, omit_links: None|str|Iterable[str]=None):
+def get_erd(doctypes: Iterable[str], child_tables: bool=True, omit_links: None|str|Iterable[str]=None, str_in:None|list=None):
     """ doctypes: iterable of all doctypes to be placed on ERD
         child_tables: includes child table links if True
         omit_links: pass a single link name, an iterable of link names, or 'all' to omit all doctype self-references
     """
+    with open('erd.txt', mode='w') as f:
+        f.write(f"doctypes in: {str(doctypes)}\n")
+        if str_in:
+            found_doctypes = [dt for dt in frappe.get_all("DocType", pluck='name') if any(map(lambda x: x in dt.lower(), str_in))]
+            f.write(f"matches: {str(str_in)}\n")
+            f.write(f"matches in: {str(found_doctypes)}\n")
+            if (in_type:= type(doctypes)) is set:
+                doctypes.update(found_doctypes)
+            elif in_type is list:
+                doctypes += found_doctypes
+            elif in_type is tuple:
+                doctypes += tuple(found_doctypes)
+
     # 1. This is very generic function only have to pass list of doctypes
     # 2. This function will generate ERD for all the doctypes passed
-    with open('erd.txt', mode='w') as f:
-        f.write(str(doctypes))
 
     doctypes = set(doctypes)
     if omit_links is not None and omit_links != 'all':

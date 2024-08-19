@@ -1,4 +1,5 @@
 from typing import Iterable
+import os
 
 import frappe
 from frappe.config import get_modules_from_app, get_modules_from_all_apps
@@ -53,21 +54,27 @@ def get_doctype_json():
 
 
 @frappe.whitelist()
-def get_erd(doctypes: Iterable[str], child_tables: bool=True, omit_links: None|str|Iterable[str]=None, str_in:None|list=None):
+def get_erd(doctypes:None|Iterable[str]=None, child_tables:bool=True, omit_links:None|str|Iterable[str]=None, str_in:None|list=None):
     """ doctypes: iterable of all doctypes to be placed on ERD
         child_tables: includes child table links if True
         omit_links: pass a single link name, an iterable of link names, or 'all' to omit all doctype self-references
     """
-    with open('erd.txt', mode='w') as f:
+    if not doctypes:
+        doctypes = []
+    filename = frappe.utils.now_datetime().strftime('%y%m%d%H%m')
+    if not os.path.exists(path:=os.path.join(os.getcwd(), "erd")):
+        os.makedirs(path)
+    os.chdir("erd")
+    with open(f"{filename}.txt", mode='w') as f:
         f.write(f"doctypes in: {str(doctypes)}\n")
         if str_in:
             found_doctypes = [dt for dt in frappe.get_all("DocType", pluck='name') if any(map(lambda x: x in dt.lower(), str_in))]
             f.write(f"matches: {str(str_in)}\n")
             f.write(f"matches in: {str(found_doctypes)}\n")
-            if (in_type:= type(doctypes)) is set:
-                doctypes.update(found_doctypes)
-            elif in_type is list:
+            if (in_type:= type(doctypes)) is list:
                 doctypes += found_doctypes
+            elif in_type is set:
+                doctypes.update(found_doctypes)
             elif in_type is tuple:
                 doctypes += tuple(found_doctypes)
 
@@ -116,19 +123,20 @@ def get_erd(doctypes: Iterable[str], child_tables: bool=True, omit_links: None|s
         table_list, connections_string_list, fetch_from_string_list, child_tables)
 
     # create_graph function will create graph from graph_string
-    create_graph(graph_string)
+    create_graph(graph_string, filename)
+    os.chdir("..")
 
     return 'Success'
 
 
-def create_graph(graph_string):
+def create_graph(graph_string, filename):
     # create graph from graph_string
     # format can be png, pdf, etc.
     # view=True will open the graph in default browser
     # erd is the name of the graph
     graph = graphviz.Source(graph_string)
     graph.format = 'png'
-    graph.render('erd', view=True)
+    graph.render(filename, view=True)
 
 
 def get_table(data, link_list, doctypes, child_tables, omit_links):

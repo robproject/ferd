@@ -9,9 +9,6 @@ from frappe.utils import get_site_base_path
 def get_zip(name, string):
     p = os.getcwd()
     try:
-        import pdb
-
-        pdb.set_trace()
         os.chdir("..")
         temp_dir = os.path.join("/tmp", f"temp_{name}")
         os.makedirs(temp_dir, exist_ok=True)
@@ -29,7 +26,6 @@ def get_zip(name, string):
                     arcname = os.path.relpath(file_path, temp_path)
                     zipf.write(file_path, arcname)
 
-        pdb.set_trace()
         # Read the zip file content
         with open(zip_path, "rb") as file:
             file_content = file.read()

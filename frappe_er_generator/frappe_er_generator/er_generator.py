@@ -226,10 +226,10 @@ def get_table(data, link_list, doctypes, child_tables, omit_links):
 	table_elements = "\n".join(table_element_list)
 
 	table = f"""{"".join(c if c.isalnum() else "_" for c in data.get("name")).lower()} [label=<
-	<table border="0" cellborder="1" cellspacing="0">
-	<tr><td port = "name"><b>{data.get("name")}</b></td></tr>
-	{table_elements}
-	</table>>];"""
+    <table border="0" cellborder="1" cellspacing="0">
+    <tr><td port = "name"><b>{data.get("name")}</b></td></tr>
+    {table_elements}
+    </table>>];"""
 
 	return table, connection_list, fetch_from
 
@@ -280,33 +280,33 @@ def get_graph_string(
 	else:
 		entry = port = key = ""
 	graph_string = f"""
-		digraph {{
-			graph [pad="0.5", nodesep="0.5", ranksep="2",legend="Fetch from\\l\\nNormal Link\\l"];
-			node [shape=plain]
-			rankdir=LR;
+        digraph {{
+            graph [pad="0.5", nodesep="0.5", ranksep="2",legend="Fetch from\\l\\nNormal Link\\l"];
+            node [shape=plain]
+            rankdir=LR;
 
-			{table_string}
+            {table_string}
 
-		{connections_string}
+        {connections_string}
 
-		{fetch_from_string}
+        {fetch_from_string}
 
-		subgraph cluster_01 {{
-			label = "Legend";
-			key [label=<<table border="0" cellpadding="2" cellspacing="0" cellborder="0">
-			<tr><td align="left" port="i1">Link</td></tr>
-			<tr><td align="left" port="i2">Fetch from</td></tr>{entry}
-			<tr><td>Custom Fields</td>
-			<td cellpadding="2"><table border="1" cellpadding="8" cellspacing="0" >
-			<tr><td bgcolor="#FEF3E2"></td></tr></table></td></tr>
-			</table>>]
-			key2 [label=<<table border="0" cellpadding="2" cellspacing="0" cellborder="0">
-			<tr><td port="i1">&nbsp;</td></tr>
-			<tr><td port="i2">&nbsp;</td></tr>{port}
-			</table>>]
-			key:i1:e -> key2:i1:w [arrowhead=tee arrowtail=crow dir=both]
-			key:i2:e -> key2:i2:w [style=dashed]{key}
-		}}
-		}}
-	"""
+        subgraph cluster_01 {{
+            label = "Legend";
+            key [label=<<table border="0" cellpadding="2" cellspacing="0" cellborder="0">
+            <tr><td align="left" port="i1">Link</td></tr>
+            <tr><td align="left" port="i2">Fetch from</td></tr>{entry}
+            <tr><td>Custom Fields</td>
+            <td cellpadding="2"><table border="1" cellpadding="8" cellspacing="0" >
+            <tr><td bgcolor="#FEF3E2"></td></tr></table></td></tr>
+            </table>>]
+            key2 [label=<<table border="0" cellpadding="2" cellspacing="0" cellborder="0">
+            <tr><td port="i1">&nbsp;</td></tr>
+            <tr><td port="i2">&nbsp;</td></tr>{port}
+            </table>>]
+            key:i1:e -> key2:i1:w [arrowhead=tee arrowtail=crow dir=both]
+            key:i2:e -> key2:i2:w [style=dashed]{key}
+        }}
+        }}
+    """
 	return graph_string

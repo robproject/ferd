@@ -1,0 +1,18 @@
+include MANIFEST.in
+include requirements.txt
+include *.json
+include *.md
+include *.py
+include *.txt
+recursive-include order_fulfillment *.css
+recursive-include order_fulfillment *.csv
+recursive-include order_fulfillment *.html
+recursive-include order_fulfillment *.ico
+recursive-include order_fulfillment *.js
+recursive-include order_fulfillment *.json
+recursive-include order_fulfillment *.md
+recursive-include order_fulfillment *.png
+recursive-include order_fulfillment *.py
+recursive-include order_fulfillment *.svg
+recursive-include order_fulfillment *.txt
+recursive-exclude order_fulfillment *.pyc

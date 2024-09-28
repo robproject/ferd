@@ -1,88 +1,88 @@
 {
- "actions": [],
- "allow_rename": 1,
- "autoname": "naming_series:",
- "creation": "2024-09-27 17:43:16.163405",
- "doctype": "DocType",
- "engine": "InnoDB",
- "field_order": [
-  "doctypes",
-  "doctype_substrings",
-  "column_break_aada",
-  "doctype_matches",
-  "section_break_riee",
-  "erd",
-  "image",
-  "naming_series"
- ],
- "fields": [
-  {
-   "fieldname": "doctypes",
-   "fieldtype": "Small Text",
-   "label": "DocTypes"
-  },
-  {
-   "fieldname": "doctype_substrings",
-   "fieldtype": "Small Text",
-   "label": "DocType Substrings"
-  },
-  {
-   "fieldname": "column_break_aada",
-   "fieldtype": "Column Break"
-  },
-  {
-   "fieldname": "doctype_matches",
-   "fieldtype": "Small Text",
-   "label": "Doctype Matches",
-   "read_only": 1
-  },
-  {
-   "fieldname": "section_break_riee",
-   "fieldtype": "Section Break"
-  },
-  {
-   "fieldname": "erd",
-   "fieldtype": "Image",
-   "label": "ERD",
-   "options": "image"
-  },
-  {
-   "fieldname": "image",
-   "fieldtype": "Attach Image",
-   "hidden": 1,
-   "label": "Image"
-  },
-  {
-   "default": "ERD.YY.MM.DD.###",
-   "fieldname": "naming_series",
-   "fieldtype": "Read Only",
-   "hidden": 1,
-   "label": "Naming Series"
-  }
- ],
- "index_web_pages_for_search": 1,
- "links": [],
- "modified": "2024-09-28 09:11:12.364611",
- "modified_by": "Administrator",
- "module": "Frappe Er Generator",
- "name": "ERD",
- "naming_rule": "By \"Naming Series\" field",
- "owner": "Administrator",
- "permissions": [
-  {
-   "create": 1,
-   "delete": 1,
-   "email": 1,
-   "export": 1,
-   "print": 1,
-   "read": 1,
-   "report": 1,
-   "role": "System Manager",
-   "share": 1,
-   "write": 1
-  }
- ],
- "sort_field": "modified",
- "sort_order": "DESC",
- "states": []
+	"actions": [],
+	"allow_rename": 1,
+	"autoname": "naming_series:",
+	"creation": "2024-09-27 17:43:16.163405",
+	"doctype": "DocType",
+	"engine": "InnoDB",
+	"field_order": [
+		"doctypes",
+		"doctype_substrings",
+		"column_break_aada",
+		"doctype_matches",
+		"section_break_riee",
+		"erd",
+		"image",
+		"naming_series"
+	],
+	"fields": [
+		{
+			"fieldname": "doctypes",
+			"fieldtype": "Small Text",
+			"label": "DocTypes"
+		},
+		{
+			"fieldname": "doctype_substrings",
+			"fieldtype": "Small Text",
+			"label": "DocType Substrings"
+		},
+		{
+			"fieldname": "column_break_aada",
+			"fieldtype": "Column Break"
+		},
+		{
+			"fieldname": "doctype_matches",
+			"fieldtype": "Small Text",
+			"label": "Doctype Matches",
+			"read_only": 1
+		},
+		{
+			"fieldname": "section_break_riee",
+			"fieldtype": "Section Break"
+		},
+		{
+			"fieldname": "erd",
+			"fieldtype": "Image",
+			"label": "ERD",
+			"options": "image"
+		},
+		{
+			"fieldname": "image",
+			"fieldtype": "Attach Image",
+			"hidden": 1,
+			"label": "Image"
+		},
+		{
+			"default": "ERD.YY.MM.DD.###",
+			"fieldname": "naming_series",
+			"fieldtype": "Read Only",
+			"hidden": 1,
+			"label": "Naming Series"
+		}
+	],
+	"index_web_pages_for_search": 1,
+	"links": [],
+	"modified": "2024-09-28 09:11:12.364611",
+	"modified_by": "Administrator",
+	"module": "Frappe Er Generator",
+	"name": "ERD",
+	"naming_rule": "By \"Naming Series\" field",
+	"owner": "Administrator",
+	"permissions": [
+		{
+			"create": 1,
+			"delete": 1,
+			"email": 1,
+			"export": 1,
+			"print": 1,
+			"read": 1,
+			"report": 1,
+			"role": "System Manager",
+			"share": 1,
+			"write": 1
+		}
+	],
+	"sort_field": "modified",
+	"sort_order": "DESC",
+	"states": []
 }

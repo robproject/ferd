@@ -34,7 +34,6 @@ $ brew install graphviz
 
 ![erd](https://user-images.githubusercontent.com/59503001/231471200-7717c3d4-75f5-45b2-8c2c-84d07ddd865b.png)
 
-
 2. Output of `get_whitelist_methods_in_app`
 
 <img width="1440" alt="image" src="https://user-images.githubusercontent.com/59503001/231189481-3d0a39b9-3cf4-49e1-a456-706ff700138f.png">
